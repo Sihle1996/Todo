@@ -1,7 +1,6 @@
 package com.groupD.demo.controller;
 
 import com.groupD.demo.entity.Todo;
-import com.groupD.demo.service.TodoService;
 import com.groupD.demo.service.TodoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +14,19 @@ public class TodoController {
     @Autowired
     private TodoServiceImpl todoService;
 
-    @GetMapping("/{id}")
+    @GetMapping
     public List<Todo> findAll() {
         return todoService.getAllTodo();
     }
 
+    @GetMapping("/{id}")
+    public Todo findone(@PathVariable Long id) {
+        return todoService.getTodoById(id);
+    }
+
     @PostMapping
-    public Todo findOne(@PathVariable Long id, @RequestBody Long) {
-       return todoService.getTodoById(id);
+    public void save(@RequestBody Todo todo) {
+        todoService.saveTodo(todo);
     }
 
     @PutMapping("/{id}")
@@ -34,4 +38,5 @@ public class TodoController {
     public void DeleteTodo(@PathVariable Long id) {
         this.todoService.DeleteTodo(id);
     }
+
 }

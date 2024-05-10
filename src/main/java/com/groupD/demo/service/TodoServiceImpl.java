@@ -14,9 +14,10 @@ public class TodoServiceImpl implements TodoService{
     @Autowired
     private TodoRepository todoRepository;
 
+
     @Override
     public List<Todo> getAllTodo() {
-        return todoRepository.findAll();
+        return  todoRepository.findAll();
     }
 
     @Override
